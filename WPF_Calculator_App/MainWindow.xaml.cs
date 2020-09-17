@@ -75,6 +75,7 @@ namespace WPF_Calculator_App
             {
                 Calculation += "0.";
             }
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btnEquals_Click(object sender, RoutedEventArgs e)
@@ -94,50 +95,61 @@ namespace WPF_Calculator_App
                     _hasResult = true;
                 }
             }
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn0_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("0");
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("1");
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btn2_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("2");
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btn3_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("3");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn4_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("4");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn5_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("5");
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btn6_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("6");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn7_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("7");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn8_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("8");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btn9_Click(object sender, RoutedEventArgs e)
         {
             CalculationBuilder("9");
+            btnParenthesis_OEnabledStateManager();
         }
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
@@ -158,6 +170,7 @@ namespace WPF_Calculator_App
             {
                 Calculation += "+";
             }
+            btnParenthesis_OEnabledStateManager();
         }
         private void btnMultiply_Click(object sender, RoutedEventArgs e)
         {
@@ -178,6 +191,7 @@ namespace WPF_Calculator_App
             {
                 Calculation += "*";
             }
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btnDivide_Click(object sender, RoutedEventArgs e)
@@ -199,6 +213,7 @@ namespace WPF_Calculator_App
             {
                 Calculation += "/";
             }
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
@@ -220,6 +235,7 @@ namespace WPF_Calculator_App
             {
                 Calculation += "-";
             }
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btnClearAll_Click(object sender, RoutedEventArgs e)
@@ -230,6 +246,7 @@ namespace WPF_Calculator_App
             }
             _hasError = false;
             Calculation = "";
+            btnParenthesis_OEnabledStateManager();
         }
 
         private void btnClear1_Click(object sender, RoutedEventArgs e)
@@ -261,15 +278,13 @@ namespace WPF_Calculator_App
             {
                 HighlightClosingParenthesis();
             }
+            btnParenthesis_OEnabledStateManager();
         }
         private void btnParenthesis_O_Click(object sender, RoutedEventArgs e)
         {
-            if (Calculation.Length == 0 || !char.IsNumber(Calculation[^1]) || _hasResult || _hasError)
-            {
-                _parenthesisCount++;
-                CalculationBuilder("(");
-                HighlightClosingParenthesis();
-            }
+            _parenthesisCount++;
+            CalculationBuilder("(");
+            HighlightClosingParenthesis();
         }
 
         private void btnParenthesis_C_Click(object sender, RoutedEventArgs e)
@@ -301,13 +316,16 @@ namespace WPF_Calculator_App
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void EnableOpeningParenthesis()
+        private void btnParenthesis_OEnabledStateManager()
         {
-            btnParenthesis_O.IsEnabled = true;
-        }
-        private void DisableOpeningParenthesis()
-        {
-            btnParenthesis_O.IsEnabled = false;
+            if (Calculation.Length == 0 || (!char.IsNumber(Calculation[^1]) && Calculation[^1] != '.') || _hasResult || _hasError)
+            {
+                btnParenthesis_O.IsEnabled = true;
+            }
+            else
+            {
+                btnParenthesis_O.IsEnabled = false;
+            }
         }
         private void HighlightClosingParenthesis()
         {
