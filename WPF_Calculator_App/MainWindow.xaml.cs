@@ -82,7 +82,7 @@ namespace WPF_Calculator_App
         {
             if(Calculation.Length > 0)
             {
-                BODMAS bodmas = new BODMAS(Calculation);
+                Calculator bodmas = new Calculator(Calculation);
                 bodmas.Calculate();
                 if (bodmas.Result is double.NaN)
                 {

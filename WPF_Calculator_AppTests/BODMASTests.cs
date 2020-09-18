@@ -27,7 +27,7 @@ namespace WPF_Calculator_App.Tests
         [TestCase("(0-5)+5/2*(6-3)", 2.5)]
         public void CalculateTest(string calc, double expected)
         {
-            BODMAS bodmas = new BODMAS(calc);
+            Calculator bodmas = new Calculator(calc);
             bodmas.Calculate();
             Assert.AreEqual(expected, Math.Round(bodmas.Result, 1));
         }

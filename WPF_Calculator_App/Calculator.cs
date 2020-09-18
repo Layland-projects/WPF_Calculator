@@ -5,14 +5,14 @@ using System.Text;
 
 namespace WPF_Calculator_App
 {
-    public class BODMAS
+    public class Calculator
     {
         public double Result { get; private set; } = 0;
         public string Error { get; set; }
         ICollection<char> _operators;
         string _calc;
         ICollection<string> _batches;
-        public BODMAS(string calc)
+        public Calculator(string calc)
         {
             _calc = calc;
             _operators = new List<char> { '/', '*', '+', '-' };
